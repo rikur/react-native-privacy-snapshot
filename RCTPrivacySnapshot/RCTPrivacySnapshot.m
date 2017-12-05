@@ -16,6 +16,11 @@
 
 RCT_EXPORT_MODULE();
 
++ (BOOL)requiresMainQueueSetup
+{
+    return YES;
+}
+
 #pragma mark - Lifecycle
 
 - (instancetype)init {
