@@ -22,11 +22,11 @@ RCT_EXPORT_MODULE();
     if ((self = [super init])) {
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(handleAppStateResignActive)
-                                                     name:UIApplicationWillResignActiveNotification
+                                                     name:UIApplicationDidEnterBackgroundNotification
                                                    object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(handleAppStateActive)
-                                                     name:UIApplicationDidBecomeActiveNotification
+                                                     name:UIApplicationWillEnterForegroundNotification
                                                    object:nil];
     }
     return self;
@@ -70,6 +70,10 @@ RCT_EXPORT_MODULE();
 
 RCT_EXPORT_METHOD(enabled:(BOOL) _enable) {
     self->enabled = _enable;
+}
+
++ (BOOL)requiresMainQueueSetup {
+    return YES;
 }
 
 @end
